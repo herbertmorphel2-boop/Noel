@@ -1,0 +1,7 @@
+{
+  "name": "Santa's Secret List",
+  "description": "A realistic interactive Santa Claus avatar powered by Gemini AI for gift wishlists.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
