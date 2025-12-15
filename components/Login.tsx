@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AUTHORIZED_USERS } from '../constants';
+import { login } from '../src/auth';
 
 interface LoginProps {
   onLogin: (name: string) => void;
@@ -10,9 +10,10 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    const cleanName = name.trim().toUpperCase();
-    if (AUTHORIZED_USERS.includes(cleanName)) {
-      onLogin(cleanName);
+    const token = login(name);
+    if (token) {
+      localStorage.setItem('authToken', token);
+      onLogin(name.trim().toUpperCase());
     } else {
       setError('Ho ho ho! O Papai Noel não encontrou seu nome na lista especial. Tente novamente.');
     }
